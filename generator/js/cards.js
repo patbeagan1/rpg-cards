@@ -78,7 +78,11 @@ function card_data_icon_back(card_data, options) {
 }
 
 function card_data_split_params(value) {
-    return value.split("|").map(function (str) { return str.trim(); });
+    try {
+        return value.split("|").map(function (str) { return str.trim(); });
+    } catch (err) {
+        return []
+    }
 }
 
 function card_element_class(card_data, options) {    
@@ -371,6 +375,8 @@ var card_element_generators = {
 // ============================================================================
 
 function card_generate_contents(contents, card_data, options) {
+    console.log(card_data)
+    console.log(contents)
     var result = "";
    
     var html = contents.map(function (value) {
